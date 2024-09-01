@@ -1,0 +1,36 @@
+﻿@using BloodBank.Properties;
+
+@model LoginListDTO
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post" id="loginForm">
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@if (ViewData["ValidationErrors"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        <ul>
+            @foreach (var error in (List<string>)ViewData["ValidationErrors"])
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}

@@ -1,0 +1,248 @@
+﻿@model BloodBank.Properties.RequestRegisterDonerListDTO
+
+@{
+    ViewData["Title"] = "RegisterDoner";
+}
+
+<h1>RegisterDoner</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegisterDoner" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BloodGroup" class="control-label"></label>
+                <select asp-for="BloodGroup" class="form-control">
+                    <option value="">Select BloodGroup</option>
+                    @if (ViewData["BloodGroups"] is SelectList bloodGroups)
+                    {
+                        @foreach (var item in bloodGroups)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="BloodGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <br />
+                <div class="form-check form-check-inline">
+                    <input asp-for="Gender" type="radio" value="Male" class="form-check-input" id="male" />
+                    <label class="form-check-label" for="Gender">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="Gender" type="radio" value="Female" class="form-check-input" id="female" />
+                    <label class="form-check-label" for="Gender">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="Gender" type="radio" value="Other" class="form-check-input" id="other" />
+                    <label class="form-check-label" for="other">Other</label>
+                </div>
+                <br />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+      
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <select asp-for="State" id="stateDropdown" class="form-control">
+                    <option value="">Select State</option>
+                    @if (ViewData["States"] is SelectList states)
+                    {
+                        @foreach (var item in states)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <select asp-for="City" id="cityDropdown" class="form-control">
+                    <option> Select City </option>
+                </select>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastDonationDate" class="control-label"></label>
+                <input asp-for="LastDonationDate" class="form-control" />
+                <span asp-validation-for="LastDonationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighSugarStatus" class="control-label"></label>
+                <br />
+                <div class="form-check form-check-inline">
+                    <input asp-for="HighSugarStatus" type="radio" value="Low" class="form-check-input" id="highSugarLow" />
+                    <label class="form-check-label" for="highSugarLow">Low</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="HighSugarStatus" type="radio" value="Normal" class="form-check-input" id="highSugarNormal" />
+                    <label class="form-check-label" for="highSugarNormal">Normal</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="HighSugarStatus" type="radio" value="High" class="form-check-input" id="highSugarHigh" />
+                    <label class="form-check-label" for="highSugarHigh">High</label>
+                </div>
+                <br />
+                <span asp-validation-for="HighSugarStatus" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HighBPStatus" class="control-label"></label>
+                <br />
+                <div class="form-check form-check-inline">
+                    <input asp-for="HighBPStatus" type="radio" value="Low" class="form-check-input" id="highBPLow" />
+                    <label class="form-check-label" for="highBPLow">Low</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="HighBPStatus" type="radio" value="Normal" class="form-check-input" id="highBPNormal" />
+                    <label class="form-check-label" for="highBPNormal">Normal</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="HighBPStatus" type="radio" value="High" class="form-check-input" id="highBPHigh" />
+                    <label class="form-check-label" for="highBPHigh">High</label>
+                </div>
+                <br />
+                <span asp-validation-for="HighBPStatus" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label" for="userName"></label>
+                <input asp-for="UserName" id="userName" onchange="fncReEnterPassword()" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" type="password" class="form-control" id="password"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="divReEnterPassword" style="display:none">
+                <label asp-for="Password" class="control-label"  for="password">Confirm Password</label>
+                <input asp-for="Password" type="password" id="confirmPassword" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            @*<----- Validation Popup ----->*@
+            <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="passwordToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Error</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Password and Confirm password do not match. Please re-enter the password correctly.
+                    </div>
+                </div>
+            </div>
+            @*<----- Validation Popup ----->*@
+
+
+           <br />
+            <div class="form-group">
+                <input type="submit" value="Create" onclick="fncConfirmPassword()" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fncReEnterPassword();
+
+    });
+
+    debugger;
+    $('#stateDropdown').change(function () {
+        var stateId = $(this).val();
+        if (stateId) {
+            $.ajax({
+                url: '@Url.Action("GetCitiesByState", "Account")',
+                type: 'GET',
+                data: { stateId: stateId },
+                success: function (data) {
+                    $('#cityDropdown').empty();
+                    $('#cityDropdown').append('<option value="">Select City</option>');
+
+                    $.each(data, function (i, city) {
+                        $('#cityDropdown').append('<option value="' + city.cityId + '">' + city.city + '</option>');
+                    });
+                },
+                error: function () {
+                    alert('Error fetching cities.');
+                }
+            });
+        } else {
+            $('#cityDropdown').empty();
+            $('#cityDropdown').append('<option value="">Select City</option>');
+        }
+    });
+
+    function fncReEnterPassword() {
+        debugger;
+        const userName = document.getElementById('userName').value;
+
+        if (userName) {
+            document.getElementById('divReEnterPassword').style.display = '';
+        }
+        else {
+            document.getElementById('Confirmpassword').value = null;
+            document.getElementById('divReEnterPassword').style.display = 'none';
+
+        }
+    }
+
+    function showToast() {
+        const toastElement = document.getElementById('passwordToast');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    }
+
+    function fncConfirmPassword() {
+        var confirmPassword = document.getElementById('confirmPassword').value
+        var password = document.getElementById('password').value
+
+        if (confirmPassword !== password) {
+
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('password').value = '';
+            alert("Password and Confirm password is not matched please Re-enter the password correctly.")
+
+
+        }
+    }
+
+</script>
+
