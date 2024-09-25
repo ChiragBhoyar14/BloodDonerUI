@@ -128,8 +128,8 @@ namespace BloodDoner.Controllers
         private async Task<List<T>> FetchDataFromApi<T>(string apiUrl)
         {
             var client = _httpClientFactory.CreateClient();
-            var content = new StringContent("", Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(apiUrl, content);
+
+            var response = await client.GetAsync(apiUrl);
             var responseData = await response.Content.ReadAsStringAsync();
 
             return JsonSerializer.Deserialize<List<T>>(responseData, new JsonSerializerOptions
